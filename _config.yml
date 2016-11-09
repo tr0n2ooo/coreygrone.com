@@ -1,7 +1,7 @@
 
-title: My Resume
-url: 'http://webjeda.com'
-baseurl: '/online-cv' #change it according to your repository name
+title: Corey Grone - Product Manager
+url: 'http://coreygrone.com'
+baseurl: '/coreygrone.com' #change it according to your repository name
 
 
 # Enable one of these styles by removing #
@@ -15,15 +15,15 @@ baseurl: '/online-cv' #change it according to your repository name
 
 
 #Profile information
-name: Alan Doe
-tagline: Full Stack Developer
+name: Corey Grone
+tagline: Product Manager
 pic: profile.png  #place a 100x100 picture inside /assets/images/ folder and provide the name of the file below
 
 #sidebar links
-email: alan.doe@website.com
-phone: 012 345 6789
-website: blog.webjeda.com #do not add http://
-linkedin: alandoe
-github: alandoe
-twitter: '@twittername'
+email: corey@coreygrone.com
+phone: 412 352 5140
+website: coreygrone.com #do not add http://
+linkedin: gronec
+github: tr0n2ooo
+twitter: '@coreygrone'
 
