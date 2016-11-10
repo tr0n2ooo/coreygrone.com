@@ -1,7 +1,7 @@
 
 title: Corey Grone - Product Manager
 url: 'http://coreygrone.com'
-baseurl: 'coreygrone.com' #change it according to your repository name
+baseurl: '/coreygrone.com' #change it according to your repository name
 
 
 # Enable one of these styles by removing #
