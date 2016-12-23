@@ -293,3 +293,8 @@ p {
 }
 /* Large devices (large desktops, 1200px and up) */
 /* Ex-Large devices (large desktops, 1200px and up) */
+
+img.profile {
+  border-radius: 101px;
+  border: solid #42A8C0 4px;
+}
