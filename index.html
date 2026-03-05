@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corey Grone — Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Bricolage+Grotesque:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0c0e0f;
+    --surface: #141618;
+    --surface2: #1c1f21;
+    --border: #282c2f;
+    --text: #d4d8da;
+    --muted: #646c72;
+    --green: #3ddc84;
+    --green-dim: #1e4d35;
+    --amber: #f0b429;
+    --blue: #4a9eff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    padding: 0 1rem 5rem;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* HEADER */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .top-bar .prompt {
+    color: var(--green);
+  }
+
+  .blink {
+    display: inline-block;
+    width: 8px;
+    height: 1em;
+    background: var(--green);
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 0 3.5rem;
+    border-bottom: 1px solid var(--border);
+    animation: slideDown 0.5s ease both;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-prefix {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hero-prefix::before {
+    content: '// ';
+    color: var(--muted);
+  }
+
+  .hero h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: #f0f2f3;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 .dim { color: var(--muted); }
+
+  .hero-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero-sub span { display: flex; align-items: center; gap: 0.4rem; }
+  .hero-sub span::before { content: '→'; color: var(--green); }
+
+  .hero-sub a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .hero-sub a:hover { color: var(--green); }
+
+  /* STAT CARDS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 2.5rem 0;
+    animation: fadeIn 0.5s 0.1s ease both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: 1.5rem;
+    transition: background 0.2s;
+  }
+
+  .stat:hover { background: var(--surface2); }
+
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 0;
+    border: 1px solid var(--border);
+    animation: fadeIn 0.6s 0.2s ease both;
+  }
+
+  /* MAIN */
+  .main {
+    border-right: 1px solid var(--border);
+  }
+
+  /* JOB */
+  .job {
+    border-bottom: 1px solid var(--border);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+
+  .job:last-child { border-bottom: none; }
+  .job:hover { background: var(--surface); }
+
+  .job-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0 1rem;
+    align-items: start;
+    margin-bottom: 1rem;
+  }
+
+  .job-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--green-dim);
+    padding-top: 0.3rem;
+    min-width: 2rem;
+  }
+
+  .job-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #f0f2f3;
+    line-height: 1.2;
+  }
+
+  .job-company {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    margin-top: 0.2rem;
+  }
+
+  .job-dates {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .job-bullets {
+    list-style: none;
+    padding-left: 3rem;
+  }
+
+  .job-bullets li {
+    font-size: 0.84rem;
+    line-height: 1.65;
+    color: var(--text);
+    padding: 0.2rem 0;
+    position: relative;
+  }
+
+  .job-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: -1.2rem;
+    color: var(--green);
+    font-size: 0.6rem;
+    top: 0.4em;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--surface);
+  }
+
+  .sidebar-block {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-block:last-child { border-bottom: none; }
+
+  .block-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .block-label::before { content: '#'; color: var(--muted); }
+
+  .edu-item { margin-bottom: 1rem; }
+  .edu-degree { font-size: 0.82rem; font-weight: 600; color: #e0e4e6; line-height: 1.3; }
+  .edu-school { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 0.2rem; }
+
+  .cert-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    line-height: 1.9;
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .cert-item::before { content: '-'; color: var(--green); flex-shrink: 0; }
+
+  .skill-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--green-dim);
+    color: var(--green);
+    margin: 0.2rem 0.2rem 0.2rem 0;
+    background: transparent;
+    transition: all 0.15s;
+    cursor: default;
+  }
+
+  .skill-tag:hover {
+    background: var(--green);
+    color: var(--bg);
+  }
+
+  .section-header {
+    padding: 1rem 2rem;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .section-header span { color: var(--green); }
+
+  @media (max-width: 750px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .layout { grid-template-columns: 1fr; }
+    .main { border-right: none; }
+    .job-header { grid-template-columns: auto 1fr; }
+    .job-dates { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="top-bar">
+    <span class="prompt">corey@grone:~$<span class="blink"></span></span>
+    <span>Pittsburgh, PA · corey@coreygrone.com · 412-352-5140</span>
+  </div>
+
+  <header class="hero">
+    <div class="hero-prefix">Senior Product Manager — Cloud &amp; Infrastructure</div>
+    <h1>Corey<br><span class="dim">Grone</span></h1>
+    <div class="hero-sub">
+      <span><a href="mailto:corey@coreygrone.com">corey@coreygrone.com</a></span>
+      <span><a href="tel:4123525140">412-352-5140</a></span>
+      <span><a href="https://linkedin.com/in/gronec" target="_blank">linkedin.com/in/gronec</a></span>
+      <span>Pittsburgh, PA</span>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value">18+</div>
+      <div class="stat-label">Years in Product</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$10M+</div>
+      <div class="stat-label">Pipeline Generated</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">16+</div>
+      <div class="stat-label">Product Launches</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">500+</div>
+      <div class="stat-label">SKUs Managed (CPQ)</div>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <main class="main">
+
+      <div class="section-header"><span>$</span> experience --list --verbose</div>
+
+      <div class="job">
+        <div class="job-header">
+          <div class="job-index">01.</div>
+          <div>
+            <div class="job-title">Senior Product Manager</div>
+            <div class="job-company">Pure Storage</div>
+          </div>
+          <div class="job-dates">2020.10–2024.07</div>
+        </div>
+        <ul class="job-bullets">
+          <li>Designed and launched Evergreen//One add-on service — $10M+ sales pipeline, $1M+ bookings across 5+ deals.</li>
+          <li>Led pricing and packaging for three Pure-wide technology launches including all go-to-market activities.</li>
+          <li>Joint IaaS offering with Cisco: $5M+ bookings in 12 months.</li>
+          <li>Joint bare metal as a service with Equinix: $1M+ bookings.</li>
+          <li>First storage company to list STaaS product on ArrowSphere digital distributor marketplace.</li>
+          <li>Delivered 10+ product SLA enhancements for internal and customer-facing tools.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div class="job-index">02.</div>
+          <div>
+            <div class="job-title">Senior Product Manager</div>
+            <div class="job-company">iland Cloud</div>
+          </div>
+          <div class="job-dates">2019.01–2020.10</div>
+        </div>
+        <ul class="job-bullets">
+          <li>Led customer discovery, concept, and engineering for Office 365 Backup as a Service.</li>
+          <li>Managed Salesforce CPQ across 500+ SKUs across three product lines.</li>
+          <li>Implemented Confluence knowledge base and public website product catalog.</li>
+          <li>SME on cloud backup and storage — supported sales, marketing, and customers.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div class="job-index">03.</div>
+          <div>
+            <div class="job-title">Product Manager</div>
+            <div class="job-company">Expedient</div>
+          </div>
+          <div class="job-dates">2016.11–2018.12</div>
+        </div>
+        <ul class="job-bullets">
+          <li>Led 16+ product and feature releases through go-to-market process and launch.</li>
+          <li>Rebuilt indirect sales program with Avant and Telarus.</li>
+          <li>Originated formal product management tools and processes for the organization.</li>
+          <li>Market research and financial modeling for new products and services.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div class="job-index">04.</div>
+          <div>
+            <div class="job-title">Product Manager</div>
+            <div class="job-company">Management Science Associates</div>
+          </div>
+          <div class="job-dates">2012.01–2016.11</div>
+        </div>
+        <ul class="job-bullets">
+          <li>Designed and launched SAN replication service on Nimble Storage.</li>
+          <li>Team lead: SharePoint next-gen intranet, MSA.com AWS migration, MapR big data products.</li>
+          <li>Team lead: Commvault backup platform migration, SevOne monitoring migration.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div class="job-index">05.</div>
+          <div>
+            <div class="job-title">MIS Advisor</div>
+            <div class="job-company">Voluntary Service Overseas</div>
+          </div>
+          <div class="job-dates">2009.11–2011.10</div>
+        </div>
+        <ul class="job-bullets">
+          <li>Managed participatory impact measurement and SMS e-governance projects.</li>
+          <li>Set up Linux server, Google Apps; developed databases in Django, Access, Excel.</li>
+        </ul>
+      </div>
+
+    </main>
+
+    <aside class="sidebar">
+
+      <div class="sidebar-block">
+        <div class="block-label">education</div>
+        <div class="edu-item">
+          <div class="edu-degree">MBA — MIS</div>
+          <div class="edu-school">Katz Business / Pitt</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">BS — Computer Engineering</div>
+          <div class="edu-school">University of Pittsburgh</div>
+        </div>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="block-label">certifications</div>
+        <div class="cert-item">AI with Python (Harvard)</div>
+        <div class="cert-item">Leading Innovation (CMU)</div>
+        <div class="cert-item">PMP (PMI)</div>
+        <div class="cert-item">PMC-VI (Pragmatic)</div>
+        <div class="cert-item">Certified ScrumMaster</div>
+        <div class="cert-item">AWS Solutions Architect</div>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="block-label">skills</div>
+        <span class="skill-tag">Product Strategy</span>
+        <span class="skill-tag">Go-to-Market</span>
+        <span class="skill-tag">Cloud / IaaS</span>
+        <span class="skill-tag">Backup &amp; DR</span>
+        <span class="skill-tag">STaaS</span>
+        <span class="skill-tag">Agile / Scrum</span>
+        <span class="skill-tag">Pricing</span>
+        <span class="skill-tag">Salesforce CPQ</span>
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">Big Data</span>
+        <span class="skill-tag">Partner Programs</span>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="block-label">volunteer</div>
+        <div class="cert-item">The Greater Sum Foundation</div>
+        <div class="cert-item">ProductCamp Pittsburgh (Board)</div>
+        <div class="cert-item">Highmark Health</div>
+      </div>
+
+    </aside>
+
+  </div>
+
+</div>
+</body>
+</html>
