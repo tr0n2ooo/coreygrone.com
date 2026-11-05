@@ -2,6 +2,9 @@
 
 My personal website — a single-page resume site styled as a dark terminal interface.
 
+## v1.4
+- Added a metric to the Motional Cursor AI agent bullet: it saves 33% of lost operations time per deployment
+
 ## v1.3
 - Reframed the hero as **Product Leader & AI Builder — Autonomous Operations, Cloud & Infrastructure**
 - Replaced the Motional responsibility bullets with accomplishments: hundreds of autonomous vehicle deployments, a Google Gemini troubleshooting chatbot, a Cursor AI agent for diagnosing and resolving deployment issues, deployment and troubleshooting SOPs, and Slack and Redash reporting for miles and hours in autonomy
